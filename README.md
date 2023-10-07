@@ -5,4 +5,4 @@ Users send an email to the adresse to get updates.
 
 Sends an email with an attached image or a dataframe extraction the day of the week the user asked, with a hint in the message object stating if there are classes on wensday.
 
-![image](https://github.com/ArmelVidali/scraper_owncloud_geomatique/assets/84096571/b83115d6-7011-4974-be31-c21b1d53b4b4)
+![image](https://github.com/ArmelVidali/scraper_owncloud_geomatique/assets/84096571/c32f583d-4ac7-4c02-abea-c902650f8ba1)
