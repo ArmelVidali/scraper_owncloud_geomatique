@@ -19,7 +19,7 @@ def send_email_to_user(destination_email, classes_next_wensday):
     subject = "Emploi du temps"
     message = "Emploi du temps de la semaine prochaine"
     if classes_next_wensday == True:
-        subject += " // Pas cours mercredi"
+        subject += " / Pas cours mercredi"
 
     # Create a MIMEText object for the email content
     msg = MIMEMultipart()

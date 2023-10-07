@@ -5,3 +5,4 @@ geckodriver.log
 google_creds.json
 cours_semaine.png
 json/
+_pycache_/
