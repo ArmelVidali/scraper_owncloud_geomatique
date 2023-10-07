@@ -21,7 +21,7 @@ def send_email_to_user(destination_email, classes_next_wensday):
     if classes_next_wensday == True:
         subject += " / Pas cours mercredi"
 
-    # Create a MIMEText object for the email content
+    # Create a MIMEText object for the email  content
     msg = MIMEMultipart()
     msg['From'] = sender_email
     msg['To'] = destination_email
