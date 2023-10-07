@@ -27,9 +27,6 @@ def extract_next_week_schedule():
     classes_next_wensday = next_week_extraction["jour"].str.contains(
         "mercredi").any()
 
-    formated_extraction = next_week_extraction.to_string(
-        index=False, justify='left')
-
     # style the df and export as image
     next_week_extraction = dfi.export(
         next_week_extraction, "cours_semaine.png")
