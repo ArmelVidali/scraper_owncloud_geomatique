@@ -3,6 +3,7 @@ import process_schedule
 import datetime
 import json
 import locale
+import scraper
 
 
 # extract todays day in french
@@ -10,6 +11,7 @@ locale.setlocale(locale.LC_TIME, 'fr_FR')
 today = datetime.date.today().strftime("%A")
 
 
+scraper.get_schedule()
 classes_next_wensday = process_schedule.extract_next_week_schedule()
 
 
