@@ -13,12 +13,12 @@ with open("json/credentials.json", "r") as json_file:
     sender_password = data["google_key"]
 
 
-def send_email_to_user(destination_email, classes_next_wensday):
+def send_email_to_user(destination_email, promotion, classes_next_wensday):
 
     # Create the email content
     subject = "Emploi du temps"
-    message = "Emploi du temps de la semaine prochaine"
-    if classes_next_wensday == True:
+    message = "Emploi du temps de la semaine prochaine, premier test si y'a une erreur dites le moi plz"
+    if classes_next_wensday == False:
         subject += " / Pas cours mercredi"
 
     # Create a MIMEText object for the email  content
@@ -32,9 +32,14 @@ def send_email_to_user(destination_email, classes_next_wensday):
     msg.attach(MIMEText(message, 'plain'))
 
     # Attach the image as an attachment
-    with open("cours_semaine.png", 'rb') as image_file:
-        image = MIMEImage(image_file.read(), name='EDT.png')
-    msg.attach(image)
+    if promotion == "M1":
+        with open("M1.png", 'rb') as image_file:
+            image = MIMEImage(image_file.read(), name='EDT.png')
+        msg.attach(image)
+    elif promotion == "M2":
+        with open("M2.png", 'rb') as image_file:
+            image = MIMEImage(image_file.read(), name='EDT.png')
+        msg.attach(image)
 
     # Connect to the SMTP server and send the email
     try:
@@ -92,16 +97,10 @@ def get_all_emails():
                     sender = key.replace("<", "").replace(">", "")
 
             # set value if email sent properly. Will define the day when the email will be send
-            if (text_content.strip().lower() in [
-                "lundi",
-                "mardi",
-                "mercredi",
-                "jeudi",
-                "vendredi",
-                "samedi",
-                "dimanche"
-            ]) & (subject.lower() == "get_updates"):
-                user_data[sender] = text_content.strip()
+            if ("M1" in text_content) & (subject.lower() == "subscribe"):
+                user_data[sender] = "M1"
+            elif ("M2" in text_content) & (subject.lower() == "subscribe"):
+                user_data[sender] = "M2"
 
             # manage unsubscription from email list
             if subject.strip().lower() == "unsubscribe":
