@@ -6,7 +6,7 @@ import json
 
 def get_schedule():
     # Load credentials from JSON file
-    with open("json/credentials.json", "r") as json_file:
+    with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/credentials.json", "r") as json_file:
         credentials = json.load(json_file)
         username = credentials["username"]
         password = credentials["password"]

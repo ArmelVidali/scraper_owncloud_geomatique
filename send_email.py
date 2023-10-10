@@ -8,7 +8,7 @@ from email.header import decode_header
 import json
 import re
 
-with open("json/credentials.json", "r") as json_file:
+with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/credentials.json", "r") as json_file:
     data = json.load(json_file)
     sender_email = data["sender_email"]
     sender_password = data["google_key"]
@@ -24,7 +24,7 @@ def send_email_to_user(destination_email, promotion, classes_next_wensday, same_
 
     if same_schedule == False:
         subject += " - MODIFIE"
-        message += " \n l'emploi du temps a peut etre été modifié, si ce n'est pas le cas merci de me le dire <3"
+        message += " \nL'emploi du temps a peut etre été modifié, si ce n'est pas le cas merci de me le dire <3"
 
     # Create a MIMEText object for the email  content
     msg = MIMEMultipart()
@@ -78,7 +78,7 @@ def get_all_emails():
 
     # Fetch the email content for each email
     email_ids = email_ids[0].split()
-    with open("json/users.json", "r") as users_file:
+    with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/users.json", "r") as users_file:
         user_data = json.load(users_file)
 
         for email_id in email_ids:
@@ -112,5 +112,5 @@ def get_all_emails():
     mail.logout()
 
     # update data
-    with open("json/users.json", "w") as users_file:
+    with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/users.json", "w") as users_file:
         json.dump(user_data, users_file)

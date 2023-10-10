@@ -12,7 +12,7 @@ def extract_next_week_schedule(promotion):
     else:
         old_schedule = pd.read_csv("csv/M1.csv")
 
-    with open("json/credentials.json", "r") as json_file:
+    with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/credentials.json", "r") as json_file:
         data = json.load(json_file)
         file_path = data["file_path"]
 

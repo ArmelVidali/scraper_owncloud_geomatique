@@ -1,13 +1,14 @@
 #!/bin/bash
+exec >> /path/to/logfile.log 2>&1
 
-# Replace with the path to your virtual environment activation script
-source deployed_project/scraper_owncloud_geomatique/scraper_owncloud_geomatique/bin/activate
+# Active venv
+echo "Activation environnemnet virtuel ..."
+source /home/ubuntu/deployed_project/scraper_owncloud_geomatique/scraper_owncloud_geomatique/bin/activate
 
-# Navigate to your project directory
-cd deployed_project/scraper_owncloud_geomatique
-
+echo "Execution de main.py"
 # Run your Python script
-python3 main.py
+python3 /home/ubuntu/deployed_project/scraper_owncloud_geomatique/main.py
 
+echo "Desactivation environnement virutel"
 # Deactivate the virtual environment
 deactivate

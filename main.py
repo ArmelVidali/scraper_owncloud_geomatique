@@ -21,16 +21,15 @@ classes_next_wensday_M2, same_schedule_M2 = process_schedule.extract_next_week_s
 
 
 def send_email_to_all_users():
-    with open("json/users.json", "r") as users_file:
+    with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/users.json", "r") as users_file:
         user_data = json.load(users_file)
         for user in user_data:
-            if user == "vidali.armel@gmail.com":
-                if user_data[user] == "M1":
-                    send_email.send_email_to_user(
-                        user, "M1", classes_next_wensday_M1, same_schedule_M2)
-                elif user_data[user] == "M2":
-                    send_email.send_email_to_user(
-                        user, "M2", classes_next_wensday_M2, same_schedule_M2)
+            if user_data[user] == "M1":
+                send_email.send_email_to_user(
+                    user, "M1", classes_next_wensday_M1, same_schedule_M2)
+            elif user_data[user] == "M2":
+                send_email.send_email_to_user(
+                    user, "M2", classes_next_wensday_M2, same_schedule_M2)
 
 
 if same_schedule_M1 == False:
@@ -41,7 +40,7 @@ if same_schedule_M2 == False:
     send_email_to_all_users()
 
 if same_schedule_M1 == True & same_schedule_M2 == True:
-    print("no changes")
+    print("no changes to schedule")
 
 if today == "dimanche":
     send_email_to_all_users()
