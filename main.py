@@ -24,18 +24,24 @@ def send_email_to_all_users():
     with open("json/users.json", "r") as users_file:
         user_data = json.load(users_file)
         for user in user_data:
-            if user_data[user] == "M1":
-                send_email.send_email_to_user(
-                    user, "M1", classes_next_wensday_M1, same_schedule_M2)
-            elif user_data[user] == "M2":
-                send_email.send_email_to_user(
-                    user, "M2", classes_next_wensday_M2, same_schedule_M2)
+            if user == "vidali.armel@gmail.com":
+                if user_data[user] == "M1":
+                    send_email.send_email_to_user(
+                        user, "M1", classes_next_wensday_M1, same_schedule_M2)
+                elif user_data[user] == "M2":
+                    send_email.send_email_to_user(
+                        user, "M2", classes_next_wensday_M2, same_schedule_M2)
 
 
 if same_schedule_M1 == False:
+    print("schedule changed M1")
     send_email_to_all_users()
 if same_schedule_M2 == False:
+    print("schedule changed M2")
     send_email_to_all_users()
+
+if same_schedule_M1 == True & same_schedule_M2 == True:
+    print("no changes")
 
 if today == "dimanche":
     send_email_to_all_users()
