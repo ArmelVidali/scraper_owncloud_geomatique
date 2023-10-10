@@ -6,6 +6,8 @@ import imaplib
 import email
 from email.header import decode_header
 import json
+from unidecode import unidecode
+import re
 
 with open("json/credentials.json", "r") as json_file:
     data = json.load(json_file)
@@ -13,13 +15,17 @@ with open("json/credentials.json", "r") as json_file:
     sender_password = data["google_key"]
 
 
-def send_email_to_user(destination_email, promotion, classes_next_wensday):
+def send_email_to_user(destination_email, promotion, classes_next_wensday, same_schedule):
 
     # Create the email content
     subject = "Emploi du temps"
-    message = "Emploi du temps de la semaine prochaine, premier test si y'a une erreur dites le moi plz"
+    message = "Emploi du temps de la semaine prochaine, contient peut etre des erreurs."
     if classes_next_wensday == False:
         subject += " / Pas cours mercredi"
+
+    if same_schedule == False:
+        subject += " - MODIFIE"
+        message += " \n l'emploi du temps a peut etre été modifié, si ce n'est pas le cas merci de me le dire <3"
 
     # Create a MIMEText object for the email  content
     msg = MIMEMultipart()
@@ -54,7 +60,6 @@ def send_email_to_user(destination_email, promotion, classes_next_wensday):
 
 
 def get_all_emails():
-    print(json_file)
 
     imap_server = "imap.gmail.com"
     imap_port = 993
@@ -83,18 +88,16 @@ def get_all_emails():
 
             # Decode the email subject and sender
             subject, _ = decode_header(msg["Subject"])[0]
-            sender, _ = decode_header(msg["From"])[0]
+            from_field = msg["From"]
+            # get only email adress, handle case of annoying poeple with accents in their name
+            sender = re.search(
+                r'<([^>]+)>', from_field).group(1) if "<" in from_field else from_field
 
             text_content = ""
             for part in msg.walk():
                 if part.get_content_type() == "text/plain":
                     text_content += part.get_payload(
                         decode=True).decode("utf-8")
-
-            # get only the email adress
-            for key in sender.split(" "):
-                if "@" in key:
-                    sender = key.replace("<", "").replace(">", "")
 
             # set value if email sent properly. Will define the day when the email will be send
             if ("M1" in text_content) & (subject.lower() == "subscribe"):
