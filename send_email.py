@@ -6,7 +6,6 @@ import imaplib
 import email
 from email.header import decode_header
 import json
-from unidecode import unidecode
 import re
 
 with open("json/credentials.json", "r") as json_file:
