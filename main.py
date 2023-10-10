@@ -6,6 +6,7 @@ import locale
 import scraper
 import pandas as pd
 
+
 locale.setlocale(locale.LC_TIME, 'fr_FR')
 today = datetime.date.today().strftime("%A")
 
@@ -19,7 +20,7 @@ classes_next_wensday_M2, same_schedule_M2 = process_schedule.extract_next_week_s
     "M2S3 23-24")
 
 
-if today == "dimanche":
+def send_email_to_all_users():
     with open("json/users.json", "r") as users_file:
         user_data = json.load(users_file)
         for user in user_data:
@@ -29,3 +30,12 @@ if today == "dimanche":
             elif user_data[user] == "M2":
                 send_email.send_email_to_user(
                     user, "M2", classes_next_wensday_M2, same_schedule_M2)
+
+
+if same_schedule_M1 == False:
+    send_email_to_all_users()
+if same_schedule_M2 == False:
+    send_email_to_all_users()
+
+if today == "dimanche":
+    send_email_to_all_users()
