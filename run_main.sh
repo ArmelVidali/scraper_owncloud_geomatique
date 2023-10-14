@@ -1,5 +1,4 @@
 #!/bin/bash
-exec >> /path/to/logfile.log 2>&1
 
 # path to virtual environment
 venv_path="/home/ubuntu/deployed_project/scraper_owncloud_geomatique/scraper_venv/bin/activate"

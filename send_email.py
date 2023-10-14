@@ -19,13 +19,13 @@ def send_email_to_user(destination_email, promotion, classes_next_wensday, same_
 
     # Create the email content
     subject = "Emploi du temps"
-    message = "Emploi du temps de la semaine prochaine, contient peut etre des erreurs."
+    message = "Emploi du temps de la semaine prochaine."
     if classes_next_wensday == False:
         subject += " / Pas cours mercredi"
 
     if same_schedule == False:
         subject += " - MODIFIE"
-        message += " \nL'emploi du temps a peut etre été modifié, si ce n'est pas le cas merci de me le dire <3"
+        message += " \nL'emploi du temps à été modifié."
 
     # Create a MIMEText object for the email  content
     msg = MIMEMultipart()
