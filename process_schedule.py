@@ -8,15 +8,17 @@ import csv
 def extract_next_week_schedule(promotion):
 
     if promotion == "M2S3 23-24":
-        old_schedule = pd.read_csv("csv/M2.csv")
+        old_schedule = pd.read_csv(
+            "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/csv/M2.csv")
     else:
-        old_schedule = pd.read_csv("csv/M1.csv")
+        old_schedule = pd.read_csv(
+            "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/csv/M1.csv")
 
     with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/credentials.json", "r") as json_file:
         data = json.load(json_file)
         file_path = data["file_path"]
 
-    df = pd.read_excel(file_path,
+    df = pd.read_excel("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/schedule_spreadsheet/spreadsheet.xlsx",
                        skiprows=2, sheet_name=promotion)
 
     today = datetime.date.today()
@@ -39,16 +41,18 @@ def extract_next_week_schedule(promotion):
         # check if the schedule changed since last time
         schedule_unchanged = old_schedule[["08h30 - 10h30", "10h30 - 12h30", "14h - 16h", "16h-18h"]].equals(
             next_week[["08h30 - 10h30", "10h30 - 12h30", "14h - 16h", "16h-18h"]])
-        next_week.to_csv("csv/M1.csv")
+        next_week.to_csv(
+            "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/csv/M1.csv")
         next_week = dfi.export(
-            next_week, "M1.png")
+            next_week, "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/M1.png")
 
     elif promotion == "M2S3 23-24":
         # check if the schedule changed since last time
         schedule_unchanged = old_schedule[["8h30 - 10h30", "10h30 - 12h30", "14h - 16h", "16h-18h"]].equals(
             next_week[["8h30 - 10h30", "10h30 - 12h30", "14h - 16h", "16h-18h"]])
-        next_week.to_csv("csv/M2.csv")
+        next_week.to_csv(
+            "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/csv/M2.csv")
         next_week = dfi.export(
-            next_week, "M2.png")
+            next_week, "/home/ubuntu/deployed_project/scraper_owncloud_geomatique/M2.png")
 
     return [classes_next_wensday, schedule_unchanged]

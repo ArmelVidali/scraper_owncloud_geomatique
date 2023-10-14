@@ -19,6 +19,9 @@ classes_next_wensday_M1, same_schedule_M1 = process_schedule.extract_next_week_s
 classes_next_wensday_M2, same_schedule_M2 = process_schedule.extract_next_week_schedule(
     "M2S3 23-24")
 
+send_email.send_email_to_user(
+    "vidali.armel@gmail.com", "M1", True, True)
+
 
 def send_email_to_all_users():
     with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/users.json", "r") as users_file:

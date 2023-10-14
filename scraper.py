@@ -24,7 +24,7 @@ def get_schedule():
     # Download the file
     response = session.get(file_url, stream=True)
     if response.status_code == 200:
-        with open(os.path.join(download_directory, file_name), 'wb') as f:
+        with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/schedule_spreadsheet/spreadsheet.xlsx", 'wb') as f:
             for chunk in response.iter_content(1024):
                 f.write(chunk)
             print("file downloaded to : ", download_directory)
