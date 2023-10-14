@@ -35,7 +35,7 @@ def send_email_to_all_users():
                     user, "M2", classes_next_wensday_M2, same_schedule_M2)
 
 
-if same_schedule_M1 == False:
+""" if same_schedule_M1 == False:
     print("schedule changed M1")
     send_email_to_all_users()
 if same_schedule_M2 == False:
@@ -47,3 +47,4 @@ if same_schedule_M1 == True & same_schedule_M2 == True:
 
 if today == "dimanche":
     send_email_to_all_users()
+ """
