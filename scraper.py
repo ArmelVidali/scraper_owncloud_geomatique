@@ -13,10 +13,6 @@ def get_schedule():
         file_url = credentials["file_url"]
         download_directory = credentials["download_directory"]
 
-    # Specify the download directory and file path
-
-    file_name = "spreadsheet.xlsx"
-
     # Create a session to handle authentication
     session = requests.Session()
     session.auth = (username, password)

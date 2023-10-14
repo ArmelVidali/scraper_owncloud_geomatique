@@ -7,6 +7,7 @@ import email
 from email.header import decode_header
 import json
 import re
+import os
 
 with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/json/credentials.json", "r") as json_file:
     data = json.load(json_file)
@@ -38,11 +39,11 @@ def send_email_to_user(destination_email, promotion, classes_next_wensday, same_
 
     # Attach the image as an attachment
     if promotion == "M1":
-        with open("M1.png", 'rb') as image_file:
+        with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/M1.png", 'rb') as image_file:
             image = MIMEImage(image_file.read(), name='EDT.png')
         msg.attach(image)
     elif promotion == "M2":
-        with open("M2.png", 'rb') as image_file:
+        with open("/home/ubuntu/deployed_project/scraper_owncloud_geomatique/M2.png", 'rb') as image_file:
             image = MIMEImage(image_file.read(), name='EDT.png')
         msg.attach(image)
 
