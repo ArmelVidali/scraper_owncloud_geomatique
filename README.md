@@ -1,9 +1,9 @@
 # Web scraper & email sender to get schedule updates
 
-Web scraper to get updates of my master degrees schedrule and send and email to my classmates when a change occurs.
-Users send an email to the adresse to get updates.
+Web scraper to get updates of my master degrees schedule and send an email to my classmates when a change occurs.
+Users send an email stating their class (1rst or 2nd year) to the adress to get updates.
 
-Sends an email with an attached image or a dataframe extraction the day of the week the user asked, with a hint in the message object stating if there are classes on wensday.
+Sends an email with an attached image coming from a dataframe extraction for next week classes every sunday (or each time the schedule changes), with a hint in the message object stating if there are classes on wensday.
 
 Runs everyday at 11h30
 
